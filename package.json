@@ -1,0 +1,28 @@
+{
+  "name": "FDrest",
+  "version": "0.0.1",
+  "description": "Lightweight rest server, usable in node or in browser. Perfect for front-end devs.",
+  "main": "main.js",
+  "license": "BSD-3-Clause",
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "repository": "https://github.com/FairyDwarves/FDrest",
+  "bugs": {
+    "url": "https://github.com/FairyDwarves/FDrest/issues"
+  },
+  "author": "Asmodehn",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/FDrest/server.js"
+  },
+  "dependencies": {
+    "express": "^4.4.3",
+    "body-parser": "^1.1.2",
+    "errorhandler": "^1.0.1",
+    "method-override": "^1.0.0"
+  },
+  "bin": {
+    "server": "./start.js"
+  }
+}
