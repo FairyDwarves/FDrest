@@ -13,14 +13,23 @@
   },
   "author": "Asmodehn",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node src/FDrest/server.js"
+    "test": "make test",
+    "start": "node server/server.js"
   },
   "dependencies": {
-    "express": "^4.4.3",
+    "express": "3.3.6",
     "body-parser": "^1.1.2",
     "errorhandler": "^1.0.1",
-    "method-override": "^1.0.0"
+    "method-override": "^1.0.0",
+    "should": "3.1.2",
+    "superagent": "0.16.0",
+    "rest-tool-common": "0.4.2",
+    "mu2": "latest",
+    "mocha": "latest",
+    "jayschema": "0.2.x",
+    "js-yaml": "latest",
+    "request" : "*",
+    "http-proxy": "0.10.3"
   },
   "bin": {
     "server": "./start.js"
