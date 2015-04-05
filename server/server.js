@@ -11,6 +11,7 @@ var api = require('./api.js');
 var monitoring = require('./monitoring.js');
 var services = require('rest-tool-common').services;
 var proxy = require('./proxy');
+var cors = require('cors');
 
 // Get configured
 var config = {};
@@ -22,6 +23,20 @@ if (process.argv.length >= 3) {
     config = require(path.resolve(__dirname, './config.js')).parameters;
 }
 // console.log( config );
+
+//configure CORS
+var whitelist = ['http://localhost'];
+var corsOptionsDelegate = function(req, callback){
+  var corsOptions;
+  if(whitelist.indexOf(req.header('Origin')) !== -1){
+    corsOptions = { origin: true }; // reflect (enable) the requested origin in the CORS response
+    console.log('origin allowed');
+  }else{
+    corsOptions = { origin: false }; // disable CORS for this request 
+    console.log('origin blocked');
+  }
+  callback(null, corsOptions); // callback expects two parameters: error and options 
+};
 
 // Load services config and service descriptors
 services.load(path.resolve(__dirname, config.restapiRoot));
@@ -40,6 +55,8 @@ server.configure(function() {
     server.use(express.responseTime());
     server.use(express.methodOverride());
     server.use(express.cookieParser());
+    server.use(cors()); //allow cors request from anywhere
+    //server.use(cors(corsOptionsDelegate)); // allow cors for whitelisted servers, for all routes
     server.use(express.session({
         secret: 'keyboard cat'
     }));
